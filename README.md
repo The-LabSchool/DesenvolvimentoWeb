@@ -5,7 +5,7 @@ Repositório central para o curso de **Desenvolvimento Web** do projeto The LabS
 ## 📅 Informações das Aulas
 * **Dias:** Segundas e Quartas-feiras.
 * **Horário:** 18:30 às 20:10.
-* **Local:** Sala 225, Bloco A – UFSC Araranguá (Unidade Jardim das Avenidas).
+* **Local:** Sala 221, Bloco A – UFSC Araranguá (Unidade Jardim das Avenidas).
 
 ## 📂 Conteúdo das Aulas
 As pastas estão organizadas por ordem cronológica e tema para facilitar a revisão:
