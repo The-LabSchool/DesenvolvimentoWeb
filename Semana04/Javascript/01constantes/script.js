@@ -1,5 +1,5 @@
 
-// Em javascriot definimos variáveis de 3 formas:
+// Em javascript definimos variáveis de 3 formas:
 var variavel_1 = "variavel_ocm_var"
 let variavel_2 = "variavel_com_let";
 const variavel_3 = "variavel_com_const";

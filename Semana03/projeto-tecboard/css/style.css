@@ -62,7 +62,7 @@ a:hover {
 }
 
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
 
     header {
         margin: 20px;
@@ -95,4 +95,4 @@ a:hover {
         padding: 18px 36px;
         font-size: 14px;
     }
-}
+} */

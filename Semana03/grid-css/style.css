@@ -20,7 +20,7 @@ body {
     padding: 25px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    border-top: 5px solid #6366f1; /* Detalhe visual charmoso */
+    border-top: 5px solid #6366f1;
 }
 
 .card h2 {
@@ -33,7 +33,14 @@ body {
     line-height: 1.5;
 }
 
-
 /* Objetivo 1: Deixar a vitrine em grid com 3 colunas. */
 /* Objetivo 2: Deixar a vitrine em grid com 2 colunas. */
 /* Objetivo 3: Deixar a vitrine em grid com 1 colunas. */
+
+
+/* .vitrine-grid {
+    display: grid;
+    grid-template-columns: 3fr 1fr 2fr;
+    gap: 10px;
+} */
+
