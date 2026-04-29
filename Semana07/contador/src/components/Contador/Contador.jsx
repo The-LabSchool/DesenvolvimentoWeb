@@ -11,13 +11,13 @@ export default function Contador() {
 
     return (
         <div className="contador-container">
-            <p>
+            <p className='contador-title'>
                 Contagem
             </p>
-            <p>
+            <p className='contador-value'>
                {contador}
             </p>
-            <button onClick={() => incrementarContador()}>
+            <button className='contador-button' onClick={() => incrementarContador()}>
                 Incrementar
             </button>
         </div>
