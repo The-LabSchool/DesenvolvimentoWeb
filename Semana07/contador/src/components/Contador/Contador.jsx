@@ -1,25 +1,25 @@
-import { useState } from 'react'
+
 import './Contador.css'
 
-export default function Contador() {
 
-    const [contador, setContador] = useState(0);
+import { useState } from 'react';
 
-    const incrementarContador = () => {
-        setContador(prev => prev + 1);
-    };
+
+export default function Contador ({label, value, incremento, funcao}) {
+
+
+    const [contador, setContador] = useState(value);
+
+    const handleClick = () => {
+        funcao();
+        setContador((prev) => prev + incremento)
+    }
 
     return (
-        <div className="contador-container">
-            <p className='contador-title'>
-                Contagem
-            </p>
-            <p className='contador-value'>
-               {contador}
-            </p>
-            <button className='contador-button' onClick={() => incrementarContador()}>
-                Incrementar
-            </button>
+        <div className="container-contador">
+            <h3>{label}</h3>
+            <p>{contador}</p>
+            <button onClick={handleClick}>Incrementar</button>
         </div>
     )
 }

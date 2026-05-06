@@ -1,4 +1,6 @@
-.contador-container {
+
+
+.container-contador{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +16,7 @@
   backdrop-filter: blur(10px);
 }
 
-.contador-container .contador-title {
+.container-contador h3{
   font-size: 2rem;
   font-weight: 600;
   color: #e0e0ff;
@@ -23,7 +25,7 @@
   text-transform: uppercase;
 }
 
-.contador-container .contador-value {
+.container-contador p {
   font-size: 6rem;
   font-weight: 700;
   color: #667eea;
@@ -32,7 +34,7 @@
   line-height: 1;
 }
 
-.contador-container .contador-button {
+.container-contador button {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
@@ -47,13 +49,12 @@
   text-transform: uppercase;
 }
 
-.contador-container .contador-button:hover {
+.container-contador button:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
 }
 
-.contador-container .contador-button:active {
+.container-contador button:active {
   transform: translateY(-1px);
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
 }
-

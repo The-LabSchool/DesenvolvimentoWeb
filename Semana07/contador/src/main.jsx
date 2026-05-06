@@ -1,9 +1,11 @@
 import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './Pages/App'
+import { createRoot  } from 'react-dom/client'
+import './global.css'
 
-createRoot(document.getElementById('root')).render(
+import Dashboard from "./pages/Dashboard/Dashboard.jsx"
+
+createRoot(document.querySelector('#root')).render(
   <StrictMode>
-    <App />
+    <Dashboard/> 
   </StrictMode>,
 )

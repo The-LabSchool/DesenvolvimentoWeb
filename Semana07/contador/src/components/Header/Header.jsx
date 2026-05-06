@@ -1,15 +1,15 @@
+
+
 import './Header.css'
 
-export default function Header() {
-
-    const nomeDoProjeto = "Meu Contador";
+export default function Header () {
 
     return (
-        <header className='header'>
-            <h1>{nomeDoProjeto}</h1>
-            <p>Seu primeiro aplicativo em ReactJs.</p>
+        <header className='header-container'>
+            <h1>Meu Contador</h1>
+            <p>Meu primeiro aplicativo em ReactJs.</p>
         </header>
     )
+
+
 }
-
-
