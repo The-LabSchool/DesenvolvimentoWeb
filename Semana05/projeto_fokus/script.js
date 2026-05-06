@@ -35,6 +35,7 @@ musicaInput.addEventListener("change", () => handleAudio());
 const handleContagem = () => {
   if (intervalId) {
     pausar();
+    
     return;
   }
   inciarContagem();
@@ -54,7 +55,6 @@ const inciarContagem = () => {
   intervalId = setInterval(contagemRegressiva, 1000);
 }
 
- 
 
 const pausar = () => {
   audioPause.play();
