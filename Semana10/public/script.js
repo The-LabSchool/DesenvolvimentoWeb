@@ -7,7 +7,18 @@
 // ---------------------------------------------------------------------------
 
 async function getAllTeachers() {
-  // TODO: buscar todos os professores e exibir na lista #teachers-list
+  let request = await fetch("/names");
+  let json = await request.json();
+  let names = json.names;
+
+  let generated_list = "";
+
+  for (let i = 0; i < names.length; i++) {
+    generated_list += `<li>${names[i]}</li>`;
+  }
+
+  let list = document.getElementById("teachers-list");
+  list.innerHTML = generated_list;
 }
 
 async function getAllClasses() {
