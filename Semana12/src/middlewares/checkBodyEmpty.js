@@ -1,0 +1,1 @@
+// Fazer Middleware para verificar se o body da requisição está vazio, caso esteja retornar um erro 400 com a mensagem "body vazio"
