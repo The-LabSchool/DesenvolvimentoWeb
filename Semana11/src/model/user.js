@@ -1,10 +1,17 @@
 const mongoose = require('../config/connection');
 
-const user_schema = new mongoose.Schema({
-    username: String,
-    password: String,
+const userSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        require: true,
+    },
+    password: {
+        type: String,
+        require: true,
+    },
+    cpf: String,
 });
 
-const User = mongoose.model('User', user_schema, 'users');
+const User = mongoose.model('User', userSchema, 'users');
 
 module.exports = User;
