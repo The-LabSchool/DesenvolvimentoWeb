@@ -2,8 +2,10 @@
 const User = require('./src/model/user');
 const Sweets = require('./src/model/sweets');
 const Historico = require('./src/model/historico');
+const checkBodyEmpty = require('./src/middlewares/checkBodyEmpty');
 const { checkUserExists } = require('./src/validations/userValidation');
 const { checkSweetsExists } = require('./src/validations/sweetsValidation');
+const { checkHistoricoExists } = require('./src/validations/historicoValidation');
 
 const express = require('express');
 let app = express();
@@ -14,7 +16,7 @@ app.get("/", (req, res) => {
     res.send("Tudo certo");
 });
 
-app.post("/user", async (req, res) => {
+app.post("/user", checkBodyEmpty, async (req, res) => {
     let name = req.body.username;
     let cpf = req.body.cpf;
     let password = req.body.password;
@@ -49,7 +51,7 @@ app.get("/user/:id", async (req, res) => {
     res.status(200).json(found);
 });
 
-app.put("/user/:id", async (req, res) => {
+app.put("/user/:id", checkBodyEmpty, async (req, res) => {
     let id = req.params.id;
 
     const foundUser = await checkUserExists(id);
@@ -95,7 +97,7 @@ app.post("/get-user", async (req, res) => {
 });
 
 // CRUD for sweets
-app.post("/sweets", async (req, res) => {
+app.post("/sweets", checkBodyEmpty, async (req, res) => {
     const { name, description, price, categories } = req.body;
 
     const sweet = new Sweets({ name, description, price, categories });
@@ -123,7 +125,7 @@ app.get("/sweets/:id", async (req, res) => {
     res.status(200).json(found);
 });
 
-app.put("/sweets/:id", async (req, res) => {
+app.put("/sweets/:id", checkBodyEmpty, async (req, res) => {
     let id = req.params.id;
     const { name, description, price, categories } = req.body;
 
@@ -158,10 +160,20 @@ app.delete("/sweets/:id", async (req, res) => {
 });
 
 // CRUD for historico
-app.post("/historico", async (req, res) => {
+app.post("/historico", checkBodyEmpty, async (req, res) => {
     const { user, sweet, quantity } = req.body;
 
-    //TODO: validações
+    const foundUser = await checkUserExists(user);
+    if (!foundUser) {
+        res.status(404).json({'response': "usuario não encontrado"});
+        return;
+    }
+
+    const foundSweet = await checkSweetsExists(sweet);
+    if (!foundSweet) {
+        res.status(404).json({'response': "doce não encontrado"});
+        return;
+    }
 
     let total = quantity * foundSweet.price;
 
@@ -175,7 +187,11 @@ app.post("/historico", async (req, res) => {
 app.get("/historico/user/:userId", async (req, res) => {
     let userId = req.params.userId;
 
-    //TODO: validações
+    const foundUser = await checkUserExists(userId);
+    if (!foundUser) {
+        res.status(404).json({'response': "usuario não encontrado"});
+        return;
+    }
 
     let records = await Historico.find({ user: userId }).populate('sweet', 'name price');
 
@@ -186,7 +202,11 @@ app.get("/historico/user/:userId", async (req, res) => {
 app.get("/historico/:id", async (req, res) => {
     let id = req.params.id;
     
-    //TODO: validações
+    let foundRecord = await checkHistoricoExists(id);
+    if (!foundRecord) {
+        res.status(404).json({'response': "id não encontrado"});
+        return;
+    }
     let found = await Historico.findById(id).populate('user', 'username cpf').populate('sweet', 'name price');
 
     res.status(200).json(found);
@@ -195,7 +215,25 @@ app.get("/historico/:id", async (req, res) => {
 app.put("/historico/:id", async (req, res) => {
     let id = req.params.id;
 
-    //TODO: validações
+    const foundRecord = await checkHistoricoExists(id);
+    if (!foundRecord) {
+        res.status(404).json({'response': "id não encontrado"});
+        return;
+    }
+
+    const { user, sweet, quantity } = req.body;
+
+    const foundUser = await checkUserExists(user);
+    if (!foundUser) {
+        res.status(404).json({'response': "usuario não encontrado"});
+        return;
+    }
+
+    const foundSweet = await checkSweetsExists(sweet);
+    if (!foundSweet) {
+        res.status(404).json({'response': "doce não encontrado"});
+        return;
+    }
 
     let total = quantity * foundSweet.price;
     let updated = await Historico.findByIdAndUpdate(id, { user, sweet, quantity, total });
@@ -211,7 +249,11 @@ app.put("/historico/:id", async (req, res) => {
 app.delete("/historico/:id", async (req, res) => {
     let id = req.params.id;
 
-    //TODO: validações
+    const foundRecord = await checkHistoricoExists(id);
+    if (!foundRecord) {
+        res.status(404).json({'response': "id não encontrado"});
+        return;
+    }
 
     let deleted = await Historico.findByIdAndDelete(id);
 
